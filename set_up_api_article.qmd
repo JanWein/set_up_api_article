@@ -1,5 +1,5 @@
 ---
-title: "Setting up an API with R Plumber, deploying it to DigitalOcean and using it in Excel"
+title: "Setting up an API with R Plumber and using it with Excel"
 format: html
 page-layout: full
 editor: visual
@@ -7,19 +7,19 @@ editor: visual
 
 ## Introduction
 
-In order to transform people from opponents to supporters on the journey to becoming a data-driven company, it is important not to radically change everything about their usual way of working and their usual environment right away, but to provide them with small but key facilitations.
+In order to transform people from opponents to supporters on the journey to becoming a data-driven company, it is important not to radically change everything about their usual way of working and their usual environment right away, but to provide them with small but key facilitations within their usual environment.
 
 If people usually work with Excel, then taking Excel away from them and telling them that they should now work with a different, more suitable tool is not helpful.
 
-They will resist it because they don't know what it means for them. They will be against it because they cannot imagine how it can be different, how it can be easier, how it can be more automated. They will be against it because they are afraid and think that "this AI" will take away their jobs.
+People will resist the big change because they don't know what it means for them. They will be against the change because they cannot imagine how the new approach can be a relief for them. They will be against it because they are afraid of "this AI" taking away their jobs.
 
-They will only be on your side when they discover the benefits for themselves, when they feel and experience what data-driven means for them. Then they will develop a need for appropriate tools all by themselves and demand their introduction.
+They will only be on your side when they discover the benefits for themselves within their familiar environment, when they feel and experience what data-driven means for them specifically. Then they will develop a need for appropriate tools and infrastructures on their own and demand its introduction and application.
 
 But this sense and understanding of data-drivenness won't happen on its own.
 
-In a first step, this requires small impulses in the familiar environment that sow the seed of wanting more.
+In a first step, it requires small impulses in the familiar environment that sow the seed of wanting more.
 
-Everyone knows the manual, error-prone and time-consuming updating of Excel files.
+For example: everyone knows the manual, error-prone and time-consuming updating of Excel files.
 
 Current figures are entered manually into the Excel spreadsheet on a daily basis and the calculations are updated accordingly.
 
@@ -29,11 +29,11 @@ Nevertheless, people want to stay in their familiar Excel world for the time bei
 
 So as a first step, let's bring some automation into this Excel world that brings people a little bit closer to data-drivenness and encourages them to develop a desire for more.
 
-I will show in the following how you can build an API in R in just a few lines of code, deploy it with almost no effort, and how people can then use the API productively on their own in their familiar Excel environment.
+I will show in the following how you can build an API in R in just a few lines of code and how people can then use the API productively on their own in their familiar Excel environment.
 
 ## Building an API
 
-first I build a simple API using the Plumber package. The Plumber Package makes it easy to turn R functions into web APIs. You simply have to add Roxygenlike comments (#\*) comments to the code and Plumber will do the rest. For demonstration purposes, I use the tidyquant package, which among other things allows to return stock quotes from Yahoo Finance. Then I describe the function with the Roxygenlike comments and it becomes an APi in a few lines of code.
+first I build a simple API using the Plumber package. The Plumber Package makes it easy to turn R functions into web APIs. You simply have to add Roxygenlike comments (#\*) to the code and Plumber will do the rest. For demonstration purposes, I use the tidyquant package, which among other things allows to return stock quotes from Yahoo Finance. Then I describe the function with the Roxygenlike comments and it becomes an APi in a few lines of code.
 
 ``` {.r filename="Plumber.R"}
 library(plumber)
@@ -64,18 +64,28 @@ financial_data <- function(symbol,from = today()-months(1),to = today()) {
 
 You can now run the API locally to test it by clicking on the "Run API" button.
 
-![](images/Bildschirmfoto%20vom%202022-12-19%2022-46-23.png)
-
-![](images/Peek%202022-12-19%2022-51.gif)
+![](images/run_loop.gif)
 
 Once the API is working, we can move on to publishing the API.
 
 ## Publishing an API
 
-### Posit Connect
-
 The easiest way to make your own APIs available to others is to make the API available through Posit Connect. However, Connect is a commercial product and therefore not suitable and accessible for everyone. If Connect is available, the button to the right of the "Run API" button makes the API available through Connect with a few clicks.
 
-### DigitalOcean
+Read [here](https://www.rplumber.io/articles/hosting.html "Plumber hosting") about the further possibilities to host Plumber APIs.
 
-For this reason, I show another way to provide APIs to others. I use [DigitalOcean](https://www.digitalocean.com) for this, where the API is hosted, and the plumberDeploy package, which allows this to be realized with minimal effort. We first need to create a DigitalOcean account and top it up with 5 USD, which can be done easily with PayPal. After that you have to connect the account to R using the `analogsea::account()` function. 
+## Using the API in Excel
+
+Once hosted, the API can be integrated into production workflows. Below I illustrate how the API can be integrated into Excel. If required, the data can now be updated by pressing just one button. This eliminates, for example, the daily manual update and transfer of data into the Excel sheet.
+
+![](images/use_loop.gif)
+
+## Insight
+
+People can stay in their familiar environment and gain time to take care of their actual substantive work instead of having to worry about the boring and annoying stuff.
+
+People are coming to understand what data-driven means to them in very concrete terms, how it benefits them, and they want more of it.
+
+This will then gradually stimulate interest in implementing more sophisticated use cases beyond the Excel world.
+
+This drives momentum on the journey to becoming a data-driven company.
